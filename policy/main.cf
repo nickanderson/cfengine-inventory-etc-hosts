@@ -1,0 +1,55 @@
+body file control
+{
+  namespace => "nickanderson";
+}
+
+bundle agent inventory_etc_hosts
+# @brief Inventory /etc/hosts
+{
+  vars:
+      "_hosts_file"
+        string => ifelse( fileexists( "$(sys.winsysdir)$(const.dirsep)drivers$(const.dirsep)etc$(const.dirsep)hosts" ),
+                          "$(sys.winsysdir)$(const.dirsep)drivers$(const.dirsep)etc$(const.dirsep)hosts",
+                          "/etc/hosts");
+
+      # /etc/hosts /might/ be badly configured with duplicate keys, so we use
+      # data_readstringarrayidx() which will let us deal with this.
+
+      "_hosts_file_entries"
+        data => data_readstringarrayidx(
+                                         "$(_hosts_file)",     # filename
+                                         "#[^\n]*",            # comment
+                                         "$(const.n)",                # split
+                                         inf,                  # maxentries
+                                         inf);                 # maxbytes
+
+      "_hosts_file_entries_idx" slist => getindices( _hosts_file_entries );
+
+      "host_entry[$(_hosts_file_entries_idx)]"
+        string => "$(_hosts_file_entries[$(_hosts_file_entries_idx)])",
+        meta => { "inventory", "attribute_name=/etc/hosts entries" };
+
+      # Not working
+      # # Can we surface a case of duplicate keys and report on the details?
+      # # I can get a structure of the line position mapped to the key name
+      # "_hosts_file_key[$(_hosts_file_entries_idx)]"
+      #   string => nth( string_split( "$(_hosts_file_entries[$(_hosts_file_entries_idx)])", "\s+", inf ), 0 );
+
+      # # But I can't seem to build a structure mapping the line position to the key
+      # # *when* I add the condition on the key being in the file more than once.
+      # "_hosts_file_keys" slist => getvalues( _hosts_file_key );
+
+      # # This is just always empty: reports: "$(with)" with => storejson( mergedata(_hosts_file_duplicate_key) );
+      # "_hosts_file_duplicate_key[$(_hosts_file_keys)]"
+      #   string => "$(_hosts_file_keys)",
+      #   if => isgreaterthan( countlinesmatching( "^$(_hosts_file_keys)", "$(_hosts_file)" ), 1 );
+}
+
+body file control
+{
+  namespace => "default";
+}
+bundle agent __main__
+{
+      methods: "nickanderson:inventory_etc_hosts";
+}
