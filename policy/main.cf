@@ -7,10 +7,10 @@ bundle agent inventory_etc_hosts
 # @brief Inventory /etc/hosts
 {
   vars:
-      "_hosts_file"
-        string => ifelse( fileexists( "$(sys.winsysdir)$(const.dirsep)drivers$(const.dirsep)etc$(const.dirsep)hosts" ),
-                          "$(sys.winsysdir)$(const.dirsep)drivers$(const.dirsep)etc$(const.dirsep)hosts",
-                          "/etc/hosts");
+      "_hosts_file" string => "/etc/hosts";
+
+    windows::
+      "_hosts_file" string => "$(sys.winsysdir)$(const.dirsep)drivers$(const.dirsep)etc$(const.dirsep)hosts";
 
       # /etc/hosts /might/ be badly configured with duplicate keys, so we use
       # data_readstringarrayidx() which will let us deal with this.
