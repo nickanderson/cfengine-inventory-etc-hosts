@@ -1,0 +1,6 @@
+{
+    "vars": {
+        "control_common_bundlesequence_end": [ "nickanderson:inventory_etc_hosts" ]
+    },
+    "inputs": [ "services/inventory-etc-hosts/main.cf" ]
+}
