@@ -1,1 +1,12 @@
+:PROPERTIES:
+:ID:       5f1521a8-5028-43f3-896c-9eb3a5a85d3f
+:END:
 #+title: Inventory /etc/hosts
+
+* Screenshots                                                        :ATTACH:
+:PROPERTIES:
+:ID:       a33dbefc-1147-4a94-927e-975579d972af
+:END:
+
+#+DOWNLOADED: file:///home/nickanderson/Pictures/screenshots/2021-10-06_12-41-12.png @ 2021-10-06 12:42:25
+[[attachment:2021-10-06_12-42-25_2021-10-06_12-41-12.png]]
