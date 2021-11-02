@@ -3,10 +3,18 @@
 :END:
 #+title: Inventory /etc/hosts
 
-* Screenshots                                                        :ATTACH:
+* Synopsis
 :PROPERTIES:
 :ID:       a33dbefc-1147-4a94-927e-975579d972af
 :END:
 
+- *Name*: =inventory-etc-hosts=
+- *Version*:  =0.1.1=
+- *Description*: Inventory the entries from hosts (=/etc/hosts=, =c:\windows\system32\drivers\etc\hosts= )
+
 #+DOWNLOADED: file:///home/nickanderson/Pictures/screenshots/2021-10-06_12-41-12.png @ 2021-10-06 12:42:25
-[[attachment:2021-10-06_12-42-25_2021-10-06_12-41-12.png]]
+[[./data/a3/3dbefc-1147-4a94-927e-975579d972af/2021-10-06_12-42-25_2021-10-06_12-41-12.png]]
+
+* Requirements
+
+- CFEngine 3.6.0 or greater
