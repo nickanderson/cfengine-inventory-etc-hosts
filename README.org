@@ -9,11 +9,8 @@
 :END:
 
 - *Name*: =inventory-etc-hosts=
-- *Version*:  =0.1.2=
+- *Version*:  =0.1.3=
 - *Description*: Inventory the entries from hosts (=/etc/hosts=, =c:\windows\system32\drivers\etc\hosts= )
-
-#+DOWNLOADED: file:///home/nickanderson/Pictures/screenshots/2021-10-06_12-41-12.png @ 2021-10-06 12:42:25
-[[./data/a3/3dbefc-1147-4a94-927e-975579d972af/2021-10-06_12-42-25_2021-10-06_12-41-12.png]]
 
 * Requirements
 
